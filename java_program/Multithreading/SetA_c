@@ -1,0 +1,92 @@
+/*c) Write a program to solve producer consumer problem in which a producer produces a value and consumer consume the value before 
+producer generate the next value.Hint: use thread synchronization)*/
+
+class SharedBuffer {
+    private int data;
+    private boolean hasData = false; // indicates whether data is available
+
+    // Producer puts data into buffer
+    public synchronized void produce(int value) {
+        while (hasData) {  // wait if data has not been consumed
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        data = value;
+        System.out.println("Produced: " + data);
+        hasData = true;
+        notify(); // notify consumer
+    }
+
+    // Consumer takes data from buffer
+    public synchronized int consume() {
+        while (!hasData) {  // wait if no data produced
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println("Consumed: " + data);
+        hasData = false;
+        notify(); // notify producer
+        return data;
+    }
+}
+
+// Producer thread
+class Producer extends Thread {
+    private SharedBuffer buffer;
+
+    public Producer(SharedBuffer buffer) {
+        this.buffer = buffer;
+    }
+
+    public void run() {
+        for (int i = 1; i <= 10; i++) { // produce 10 items
+            buffer.produce(i);
+            try {
+                Thread.sleep(500); // simulate production time
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+// Consumer thread
+class Consumer extends Thread {
+    private SharedBuffer buffer;
+
+    public Consumer(SharedBuffer buffer) {
+        this.buffer = buffer;
+    }
+
+    public void run() {
+        for (int i = 1; i <= 10; i++) { // consume 10 items
+            buffer.consume();
+            try {
+                Thread.sleep(500); // simulate consumption time
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+// Main class
+public class ProducerConsumerExample {
+    public static void main(String[] args) {
+        SharedBuffer buffer = new SharedBuffer();
+
+        Producer producer = new Producer(buffer);
+        Consumer consumer = new Consumer(buffer);
+
+        producer.start();
+        consumer.start();
+    }
+}
