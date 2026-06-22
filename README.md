@@ -2,14 +2,16 @@
 Java Operators Reference Note
 1.	Arithmetic Operators
 Arithmetic operators perform basic mathematical calculations. Java uses Integer Division (truncates decimals) when both operands are integers, and Floating-point Division if at least one operand is a decimal type.
+
  Syntax & Behaviour
 •	+ (Addition): Sums numbers or concatenates strings.
 •	- (Subtraction): Subtracts right operand from left.
 •	* (Multiplication): Multiplies values.
 •	/ (Division): Divides left operand by right.
 •	% (Modulus): Returns the division remainder. [1, 2, 3]
+
  Example
-java
+
 int a = 15;
 int b = 4;
 
@@ -22,8 +24,10 @@ System.out.println(a % b); // Outputs: 3 (15 divided by 4 leaves a remainder of 
 double division = (double) a / b; 
 System.out.println(division); // Outputs: 3.75 (Floating-point division)
 Use code with caution.
+
 2.	Increment and Decrement Operators
-These unary operators alter an integer variable value by exactly 1. [1]
+These unary operators alter an integer variable value by exactly 1.
+
  Syntax & Behaviour
 •	++ (Increment): Increases value by 1.
 •	-- (Decrement): Decreases value by 1.
@@ -41,14 +45,15 @@ System.out.println("x: " + x + ", Result: " + prefixResult); // Outputs: x: 11, 
 int postfixResult = y++; 
 System.out.println("y: " + y + ", Result: " + postfixResult); // Outputs: y: 11, Result: 10
 Use code with caution.
+
 3. Relational Operators
 Relational operators compare primitive operands and always return a boolean state (true or false).
  Syntax & Behaviour
 •	== (Equal to) | != (Not equal to)
 •	> (Greater than) | < (Less than)
 •	>= (Greater than or equal to) | <= (Less than or equal to) [1, 2, 3]
+
  Example
-java
 int p = 20;
 int q = 25;
 
@@ -57,14 +62,15 @@ System.out.println(p != q); // Outputs: true
 System.out.println(p < q);  // Outputs: true
 System.out.println(p >= q); // Outputs: false
 Use code with caution.
+
 4. Logical Operators
 Logical operators combine multiple Boolean expressions. Java implements short-circuit evaluation, skipping execution of the second expression if the final output can be determined by the first.
  Syntax & Behaviour
 •	&& (Conditional-AND): Returns true if both states are true. (Short-circuits to false if the first expression is false).
 •	|| (Conditional-OR): Returns true if at least one state is true. (Short-circuits to true if the first expression is true).
 •	! (Logical NOT): Reverses a boolean value.
+
  Example
-java
 int age = 20;
 boolean hasLicense = true;
 
@@ -78,6 +84,7 @@ System.out.println(rule); // Outputs: false (Does not crash because age < 10 is 
 
 System.out.println(!hasLicense); // Outputs: false
 Use code with caution.
+
 5. Bitwise Shift Operators
 Shift operators manipulate individual bits of binary numbers. Java uses two's complement form for signed negative integer numbers.
  Syntax & Behaviour
@@ -101,8 +108,10 @@ int negVal = -8;
 System.out.println(negVal >> 1);  // Outputs: -4 (Preserves the sign bit)
 System.out.println(negVal >>> 1); // Outputs: 2147483644 (Fills left bit with 0)
 Use code with caution.
+
 Summary
 Java utilizes structured arithmetic operations, pre/post evaluation adjustments, boolean comparisons, conditional short-circuit evaluations, and bit manipulation configurations to execute logic.
+
 More Information 
 https://www.youtube.com/watch?v=nJbXWIDt2u4
 
