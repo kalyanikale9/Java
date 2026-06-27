@@ -1,0 +1,112 @@
+Parsing in Java
+Parsing is the process of converting a String into another data type (such as `int`, `double`, `boolean`, etc.) so that it can be used for calculations, comparisons, and logical operations.
+Java provides wrapper classes for all primitive data types. These wrapper classes contain parseXxx() methods to convert a `String` into its corresponding primitive type.
+ Syntax of Parsing Methods
+WrapperClass.parseXxx(String value);
+ Example:
+int num = Integer.parseInt("100");
+Parsing Methods with Syntax and Examples
+
+| Primitive Type | Wrapper Class | Syntax                             | Example                                        |
+| -------------- | ------------- | ---------------------------------- | ---------------------------------------------- |
+| **byte**       | `Byte`        | `Byte.parseByte(String str)`       | `byte b = Byte.parseByte("10");`               |
+| **short**      | `Short`       | `Short.parseShort(String str)`     | `short s = Short.parseShort("200");`           |
+| **int**        | `Integer`     | `Integer.parseInt(String str)`     | `int i = Integer.parseInt("100");`             |
+| **long**       | `Long`        | `Long.parseLong(String str)`       | `long l = Long.parseLong("999999");`           |
+| **float**      | `Float`       | `Float.parseFloat(String str)`     | `float f = Float.parseFloat("3.14");`          |
+| **double**     | `Double`      | `Double.parseDouble(String str)`   | `double d = Double.parseDouble("99.99");`      |
+| **boolean**    | `Boolean`     | `Boolean.parseBoolean(String str)` | `boolean flag = Boolean.parseBoolean("true");` |
+| **char**       | `Character`   | No `parseChar()` method            | `char ch = "A".charAt(0);`                     |
+Example 
+public class ParseExample {
+
+    public static void main(String[] args) {
+
+            byte b = Byte.parseByte("10");
+            short s = Short.parseShort("100");
+            int i = Integer.parseInt("500");
+            long l = Long.parseLong("100000");
+            float f = Float.parseFloat("3.14");
+            double d = Double.parseDouble("99.99");
+            boolean flag = Boolean.parseBoolean("true");
+            char ch = "A".charAt(0);
+
+            System.out.println("Byte    : " + b);
+            System.out.println("Short   : " + s);
+            System.out.println("Integer : " + i);
+            System.out.println("Long    : " + l);
+            System.out.println("Float   : " + f);
+            System.out.println("Double  : " + d);
+            System.out.println("Boolean : " + flag);
+            System.out.println("Char    : " + ch);
+
+        }
+    }
+}
+Output
+Byte    : 10
+Short   : 100
+Integer : 500
+Long    : 100000
+Float   : 3.14
+Double  : 99.99
+Boolean : true
+Char    : A
+ 
+1.Numeric Parsing
+All numeric parsing methods convert a **String** into a primitive numeric value.
+Syntax   dataType variable = WrapperClass.parseXxx("value");
+Example  int num = Integer.parseInt("250");
+         double price = Double.parseDouble("45.75");
+2. Boolean Parsing
+Syntax boolean variable = Boolean.parseBoolean("value");
+Example boolean flag = Boolean.parseBoolean("true");
+        Boolean.parseBoolean("TRUE");    // true 
+        Boolean.parseBoolean("False");   // false
+        Boolean.parseBoolean("Hello");   // false
+3. Character Parsing
+Java does not provide a parseChar() method.
+Syntax
+char variable = string.charAt(index);
+Example
+char grade = "A".charAt(0);
+ 4. Whitespace Handling
+Numeric parsing methods do not accept leading or trailing spaces.
+Integer.parseInt("123");      // Valid
+Integer.parseInt(" 123 ");    // Exception
+Use `trim()` to remove spaces.
+Integer.parseInt(" 123 ".trim());
+ Parsing vs valueOf()
+
+| parseXxx()                         | valueOf()                         |
+| ---------------------------------- | --------------------------------- |
+| Returns a primitive value          | Returns a wrapper object          |
+| Faster for calculations            | Useful when an object is required |
+| Example: `Integer.parseInt("100")` | Example: `Integer.valueOf("100")` |
+
+ Syntax 
+// parseXxx()
+int num = Integer.parseInt("100");
+
+// valueOf()
+Integer obj = Integer.valueOf("100");
+Exception
+
+ NumberFormatException
+This exception occurs when the string cannot be converted into a valid numeric value.
+Example
+Integer.parseInt("ABC");
+Double.parseDouble("12.5A");
+ Advantages of Parsing
+* Converts String values into primitive data types.
+* Allows arithmetic operations on user input.
+* Used when reading input from the keyboard, files, or databases.
+* Helps validate numeric input before processing.
+* Parsing converts a **String** into a **primitive data type**.
+* Wrapper classes provide **parseXxx()** methods.
+syntax:
+WrapperClass.parseXxx(String value);
+* Numeric parsing methods throw **NumberFormatException** for invalid input.
+* Boolean.parseBoolean() returns `true` only for "true" (case-insensitive).
+* There is no parseChar() method; use charAt(0).
+* parseXxx() returns a **primitive value**, while valueOf() returns a **wrapper object**.
